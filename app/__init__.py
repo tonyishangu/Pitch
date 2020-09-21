@@ -4,5 +4,5 @@ from flask_bootstrap import Bootstrap
 # Initializing application
 app = Flask(__name__)
 
-from app import views
-from app import error
+from .main import views
+from .main import error
