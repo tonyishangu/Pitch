@@ -1,6 +1,4 @@
 import os
-#from dotenv import load_dotenv
-#load_dotenv()
 
 class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
@@ -13,6 +11,7 @@ class Config:
     MAIL_USE_SSL = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    
 
 class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
