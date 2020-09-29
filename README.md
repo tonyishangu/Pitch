@@ -1,4 +1,4 @@
-# pitch-world
+# pitch
 ## Author
 
 [Tonnie](https://github.com/tonyishangu)
