@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+<!-- Content block -->
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+
+            <h1>Pitches according to the {{ category }} category</h1>
+            <hr>
+            <a class="btn btn-success btn-lg text-center" href="/submitpitch/1234"> Write a new pitch</a>
+        </div>
+        <!--Display pitches categories-->
+        <div class="col-md-12">
+            {% if pitches %}
+            {% for review in pitches %}
+            <div class="col-md-6 col-lg-6 review-card">
+                <h2> {{ review.pitch_title}} </h2>
+                <p> Description: {{ review.pitch_description }}</p>
+            </div>
+            {% endfor %}
+            {%else%}
+            <p>Pitches doesn't work</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

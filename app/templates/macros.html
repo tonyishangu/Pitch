@@ -1,40 +1,39 @@
-{% macro display(piches) %}
-<div class="container-fluid">
-    <div class="row">
-        {% if piches %}
-        {% for category in piches %}
-        <div class="col-md-4">
-            <div class="thumbnail" id="carded">
-                <h5 class="card-header">{{category.title}}</h5>
-                <div class="card-body">
-                    <p>{{category.post}}</p>
-                    <p class="text-center"> Category: {{category.category}}</p>
-                    <footer class="blockquote-footer text-center"> Posted by: {{category.user.username}}</footer>
-                    <div><span class="foot">{{category.comment.count()}} Comments</span>
-                        <span class="foot"> <a href="{{url_for('main.like',id = category.id)}}"><i
-                                    class="fa fa-thumbs-up" style="font-size:18px;color: green"></i></a>
-                            {{category.upvote.count()}}</span>
+{% macro displayPitches(all) %}
 
+<!--    {% for pitch in pitch_list %}
+        <li>{{ pitch.title}}</li>
+        <li class="text-center">
+            <a href="/category/{{pitch.category}}">
+                {{ pitch.pitch_catergory}}</a>
+        </li>
+        <li>{{ pitch.description}}</li>
+    {% endfor %}
+-->
 
-                        <span class="foot"> <a href="{{url_for('main.dislike',id = category.id)}}"> <i
-                                    class="fa fa-thumbs-down" style="color:red;"></i>
-                                {{category.downvote.count()}}</a></span></div>
+<li class="text-center">
+    <a href="/category/Motivational">Category</a>
+</li>
+<li>Testing. It displays the item.</li>
 
-                    <a href="{{url_for('main.comment',pitch_id = category.id)}}" class="btn btn-info btn-sm">
-                        Comment</a>
-                </div>
-            </div>
-        </div>
+{% endmacro %}
 
-        {% endfor %}
-        {% else %}
-        <div class="card w-90 mb-3">
-            <div class="card-body">
-
-                <p class="card-title">Category Has 0 posts</p>
-            </div>
-        </div>
-        {% endif %}
-    </div>
+<!--    {% for pitch in pitch_list %}
+        <li>{{ pitch.title}}</li>
+        <li class="text-center">
+            <a href="/category/{{pitch.category}}">
+                {{ pitch.pitch_catergory }}</a>
+        </li>
+        <li>{{ pitch.description}}</li>
+    {% endfor %}
+-->
+{% macro displayPitchesCat(pitches_list) %}
+{% for review in pitches_list %}
+<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
+    <h2> {{ review.title}} </h2>
+    <p> {{ review.description | truncate(30) }}</p>
 </div>
+{% endfor %}
+
+<li>Testing. It displays the item. according to category</li>
+
 {% endmacro %}

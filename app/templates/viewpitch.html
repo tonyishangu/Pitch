@@ -1,0 +1,62 @@
+{% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+
+    <div class="col-md-8">
+
+        <h2> {{pitches.pitch_title| capitalize}} </h2>
+
+        <hr>
+
+        <!--Displaying pitch info-->
+        {% if pitches %}
+        <h4> Category: <a href="/category/{{pitches.pitch_category}}"> {{pitches.pitch_category}}</a></h4>
+        <br>
+        <p style="font-weight: bold;"> Description </p>
+        <p> {{pitches.pitch_description}}</p>
+
+        <p> Votes: {{pitches.pitch_votes}} </p>
+
+        <div class="row">
+            <div class="col-md-2">
+                {{ wtf.quick_form(form2) }}
+            </div>
+            <div class="col-md-2">
+                {{ wtf.quick_form(form3) }}
+            </div>
+        </div>
+        {%else%}
+        <p> Something went wrong</p>
+        {% endif %}
+        <br>
+        <hr>
+        <hr>
+        <h4> Comments </h4>
+        {% if comments %}
+        {% for c in comments %}
+        <p> {{c.comment_description}}</p>
+        {% if user%}
+        {%for u in user%}
+        {% if c.user_id == u.id%}
+        <h5 style="font-style: italic;"> Author: {{u.username}} </h5>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <hr>
+        {% endfor %}
+        {%else%}
+        <p> Something went wrong or there are no comments available for this pitch</p>
+        {% endif %}
+
+    </div>
+
+    <div class="col-md-4">
+        <h3> Leave a comment </h3>
+        {{ wtf.quick_form(form) }}
+    </div>
+
+</div>
+
+{% endblock %}
