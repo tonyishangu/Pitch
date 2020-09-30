@@ -36,7 +36,7 @@ def cat(category):
 
 #submit a pitch view, need to change the unique id
 @main.route('/submitpitch/<int:userid>', methods = ['GET','POST'])
-
+@login_required
 def new_pitch(userid):
     form = PitchForm()
 #pitch id needs a unique number
