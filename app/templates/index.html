@@ -4,8 +4,7 @@
 <!-- Content block -->
 {% block content %}
 <!-- Display all pitches-->
-<h3>All Pitches</h3>
-<hr>
+
 <hr>
 <!--Display pitches-->
 <div class="col-md-12">
@@ -13,13 +12,12 @@
     {% for p in pitches %}
     <div class="col-md-6 col-lg-6 review-card">
         <p><span style="font-weight: bold"> Title: </span> {{ p.pitch_title}} </p>
-        <p style="font-weight: bold"> Category </p>
-        <p> {{p.pitch_category}} | View more <a href="/category/{{p.pitch_category}}"> {{p.pitch_category}} </a> pitches
-        </p>
-        <p style="font-weight: bold"> Description </p>
+        <p style="font-weight: bold"> Category:{{p.pitch_category}}</p>
+        <p style="font-weight: bold"> Pitch </p>
         <p> {{ p.pitch_description }}</p>
-        <p> <a href="/viewpitch/{{p.id}}"> View & add comments </a> </p>
-        <hr>
+        View more <a href="/category/{{p.pitch_category}}"> {{p.pitch_category}} pitches </a>
+        <p> <a href="/viewpitch/{{p.id}}">comments </a> </p>
+        <br>
     </div>
     {% endfor %}
     {%else%}

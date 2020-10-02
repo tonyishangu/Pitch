@@ -1,41 +1,40 @@
 {% extends 'base.html'%}
-<!-- {% import 'macros.html' as macro%} -->
+
 
 {% block content %}
 <div class="container">
     <div class="row">
-        <!-- displaying  Username-->
-        <div class="col-md-3">
-            <h2>Profile </h2>
+        <div class="col-md-4">
+            <h4>Profile </h4>
             <hr>
-            <h3> Name: {{user.username| capitalize}} </h3>
+            <h5>{{user.username| capitalize}}</h5>
 
             <!--Displaying user bio-->
             {% if user.bio %}
-            <h4> About me: </h4>
+            <h6> Bio: </h6>
             <p> {{user.bio}}</p>
             {%else%}
             <p> You have no bio </p>
             {% endif %}
 
             {% if user == current_user %}
-            <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+            <a href="{{url_for('main.update_profile',uname=user.username)}}">Create/Edit Bio..</a>
             {% endif %}
         </div>
 
         <!--Display pitches-->
-        <div class="col-md-9">
-            <h2>Pitches </h2>
+        <div class="col-md-8">
+            <h4>My Pitches </h4>
             <hr>
             {% if pitches %}
             {% for p in pitches %}
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 review-card">
                 <p style="font-weight: bold"> Title </p>
                 <p> {{ p.pitch_title}} </p>
-                <p style="font-weight: bold"> Category </p>
-                <p> {{p.pitch_category}} | <a href="/category/{{p.pitch_category}}">More </a> </p>
-                <p style="font-weight: bold"> Description </p>
-                <p> {{ p.pitch_description }}</p>
+                <p style="font-weight: bold"> Category: {{p.pitch_category}}</p>
+                 <h5 style="font-weight: bold">Description </h5>
+                 {{ p.pitch_description }}<br>
+                <a href="/category/{{p.pitch_category}}">More from {{p.pitch_category}}</a>
                 <p> <a href="/viewpitch/{{p.id}}">Comments </a> </p>
             </div>
             {% endfor %}

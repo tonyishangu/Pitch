@@ -1,18 +1,15 @@
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"> Pitches </a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-            </ul>
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Pitch</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01"
+        aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
                 <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
@@ -21,10 +18,15 @@
                 <li><a href="{{url_for('auth.login')}}">Login</a></li>
                 {%endif%}
             </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="/submitpitch/1234">New pitch</a></li>
-            </ul>
-        </div>
-
+            <li class="nav-item">
+                <a href="{{url_for('auth.register')}}">New Account</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="/submitpitch/1234">New pitch</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-md-0">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        </form>
     </div>
-</div>
+</nav>

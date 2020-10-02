@@ -25,21 +25,20 @@ def cat(category):
     '''
     View categories function that returns the pitches of a given category
     '''
-#    pitches = get_pitches(category)
-    #categories title
+
     cat = category
     title = f'{cat} pitches'
 
     pitches = Pitch.get_pitchcat(category)
 
-    return render_template('categories.html',title = title, pitches=pitches, category=cat)#, pitches=pitches, pitch=pitch)
+    return render_template('categories.html',title = title, pitches=pitches, category=cat)
 
-#submit a pitch view, need to change the unique id
+
 @main.route('/submitpitch/<int:userid>', methods = ['GET','POST'])
 @login_required
 def new_pitch(userid):
     form = PitchForm()
-#pitch id needs a unique number
+
     pitchid = userid
 
     if form.validate_on_submit():
@@ -47,7 +46,6 @@ def new_pitch(userid):
         category = form.category.data
         description = form.description.data
         new_pitch = Pitch(pitch_title=title,pitch_category=category,pitch_description=description, user=current_user)
-        #new_pitch.save_pitch()
         db.session.add(new_pitch)
         db.session.commit()
 
@@ -57,7 +55,7 @@ def new_pitch(userid):
     title = 'New Pitch'
     return render_template('new_pitch.html',title = title, pitch_form=form)
 
-#submit a pitch view, need to change the unique id
+
 @main.route('/viewpitch/<int:pitchid>', methods = ['GET','POST'])
 
 def comment(pitchid):
@@ -65,7 +63,7 @@ def comment(pitchid):
     form2 = Upvoteform()
     form3 = Downvoteform()
 
-    #pitch id needs a unique number
+
     pitchid=pitchid
     pitches = Pitch.get_singlepitch(pitchid)
     comments = Comment.get_comments(pitchid)

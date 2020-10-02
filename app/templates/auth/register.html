@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="container">
+    <h4>Sign Up</h4><br>
     <div class="row">
         <div class="col-md-2"> </div>
         <div class="col-md-8">
@@ -12,6 +13,7 @@
         </div>
         <div class="col-md-2"></div>
     </div>
+    <p> have an account? <a href="{{url_for('auth.login')}}">Login</a></p>
 </div>
 
 {% endblock%}
